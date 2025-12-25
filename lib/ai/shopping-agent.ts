@@ -3,7 +3,7 @@ import { searchProductsTool } from "./tools/search-products";
 import { createGetMyOrdersTool } from "./tools/get-my-orders";
 
 interface ShoppingAgentOptions {
-  userId: string | null;
+ userId: string | null;
 }
 
 const baseInstructions = `You are a friendly shopping assistant for a premium furniture store.
@@ -183,27 +183,27 @@ The user is not signed in. If they ask about orders, politely let them know they
  * Creates a shopping agent with tools based on user authentication status
  */
 export function createShoppingAgent({ userId }: ShoppingAgentOptions) {
-  const isAuthenticated = !!userId;
+ const isAuthenticated = !!userId;
 
-  // Build instructions based on authentication
-  const instructions = isAuthenticated
-    ? baseInstructions + ordersInstructions
-    : baseInstructions + notAuthenticatedInstructions;
+ // Build instructions based on authentication
+ const instructions = isAuthenticated
+  ? baseInstructions + ordersInstructions
+  : baseInstructions + notAuthenticatedInstructions;
 
-  // Build tools - only include orders tool if authenticated
-  const getMyOrdersTool = createGetMyOrdersTool(userId);
+ // Build tools - only include orders tool if authenticated
+ const getMyOrdersTool = createGetMyOrdersTool(userId);
 
-  const tools: Record<string, Tool> = {
-    searchProducts: searchProductsTool,
-  };
+ const tools: Record<string, Tool> = {
+  searchProducts: searchProductsTool,
+ };
 
-  if (getMyOrdersTool) {
-    tools.getMyOrders = getMyOrdersTool;
-  }
+ if (getMyOrdersTool) {
+  tools.getMyOrders = getMyOrdersTool;
+ }
 
-  return new ToolLoopAgent({
-    model: gateway("anthropic/claude-sonnet-4.5"),
-    instructions,
-    tools,
-  });
+ return new ToolLoopAgent({
+  model: gateway("google/gemini-2.5-pro"),
+  instructions,
+  tools,
+ });
 }

@@ -10,6 +10,7 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.1",
     "@ai-sdk/react": "^3.0.3",
     "@clerk/nextjs": "^6.36.5",
     "@hookform/resolvers": "^5.2.2",

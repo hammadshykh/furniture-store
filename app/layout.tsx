@@ -32,9 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Premium Furniture Store" }],
   creator: "Premium Furniture Store",
   publisher: "Premium Furniture Store",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-  ),
+  metadataBase: new URL("https://furniture-web-ai-store.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
